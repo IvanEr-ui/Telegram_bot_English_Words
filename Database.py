@@ -30,18 +30,21 @@ class Database:
         try:
             self.cursor.execute(f"SELECT id FROM topics WHERE user_id IS NULL")
             topic = self.cursor.fetchone()
+            print(topic)
             topic_id = None
             if topic:
                 topic_id = topic[0]
-
+            
             query = (f"INSERT INTO users (id, topic_id, questions_number, correct_answers_number) "
                      f"VALUES (%(user_id)s, %(topic_id)s, %(questions_number)s, %(correct_answers_number)s)")
+             print(query)
             data = {
                 "user_id": user_id,
                 "topic_id": topic_id,
                 "questions_number": 5,
                 "correct_answers_number": 5,
             }
+             print(data)
             self.cursor.execute(query, data)
             self.connection.commit()
         except (Exception, Error) as error:
