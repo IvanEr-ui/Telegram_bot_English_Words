@@ -155,7 +155,8 @@ def testing():
     user_answer = request.json['callback_query']['data']
 
     user_answer_word_id, user_answer_word_translation = user_answer.split(',')
-
+    user_answer_word_translation = user_answer_word_translation.lstrip()
+    
     bot.deleteMessage(chat_id, message_id)
 
     word_obj = db.get_word_by_id_from_test(user_id, user_answer_word_id)
