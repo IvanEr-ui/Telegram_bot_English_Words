@@ -273,8 +273,9 @@ def statictics():
 def paramsSetting():
     chat_id = request.json['message']['chat']['id']
 
+    reply_markup = menu_reply_keyboard_markup
     text = "Настройка параметров теста. Настройка производится через меню ↙"
-    bot.sendMessage(chat_id, text)
+    bot.sendMessage(chat_id, text, reply_markup)
 
 
 def backToMain():
@@ -289,6 +290,7 @@ def backToMain():
 
 
 def setTopic():
+    
     chat_id = request.json['message']['chat']['id']
     user_id = request.json['message']['from']['id']
 
@@ -428,11 +430,11 @@ command_handlers = {
     '🛠 Настройка параметров': {'handler': paramsSetting, 'state': States.DEFAULT},
     '🏁 Досрочно завершить тест': {'handler': finishTest, 'state': States.TEST_STATE},
     '📘 Пример использования': {'handler': usageExample, 'state': States.TEST_STATE},
-    '/topic': {'handler': setTopic, 'state': States.DEFAULT},
+    'Выбрать тему': {'handler': setTopic, 'state': States.DEFAULT},
     '❌ Отменить настройку темы': {'handler': backToMain, 'state': States.GET_TOPIC},
-    '/questions_number': {'handler': setQuestionsNumber, 'state': States.DEFAULT},
+    'Количество вопросов': {'handler': setQuestionsNumber, 'state': States.DEFAULT},
     '❌ Отменить настройку количества вопросов': {'handler': backToMain, 'state': States.GET_QUESTIONS_NUMBER},
-    '/correct_answers_number': {'handler': setCorrectAnswersNumber, 'state': States.DEFAULT},
+    'Количество правильных ответов': {'handler': setCorrectAnswersNumber, 'state': States.DEFAULT},
     '❌ Отменить настройку количества правильных ответов': {'handler': backToMain, 'state': States.GET_CORRECT_ANSWERS_NUMBER},
 }
 
