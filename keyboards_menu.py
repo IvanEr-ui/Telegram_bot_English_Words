@@ -45,3 +45,9 @@ reminder_inline_keyboard_markup = {
 }
 
 # Команды меню
+menu_reply_keyboard_markup = {
+    "keyboard": [
+        ["Выбрать тему", "Количество вопросов", "Количество правильных ответов"]
+    ],
+    "resize_keyboard": True
+}
