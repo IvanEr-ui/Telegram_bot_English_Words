@@ -44,6 +44,7 @@ def start():
     chat_id = request.json['message']['chat']['id']
     user_id = request.json['message']['from']['id']
     print(user_id)
+    print(chat_id)
     if not db.get_user_by_id(user_id):
         db.add_user(user_id)
 
