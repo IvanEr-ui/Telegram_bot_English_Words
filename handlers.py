@@ -205,7 +205,7 @@ def newQuestion(chat_id, user_id):
     answers = [word_translation, *fakeAnswers]
     random.shuffle(answers)
     text = f"Как переводится слово <b>{word}</b>?"
-    inline_keyboard = [{"text": f"{answer}", "callback_data": f"{word_id} {answer}"} for answer in answers]
+    inline_keyboard = [{"text": f"{answer}", "callback_data": f"{word_id}, {answer}"} for answer in answers]
     reply_markup = {
         "inline_keyboard": [inline_keyboard[i:i + 2] for i in range(0, len(answers), 2)]
     }
