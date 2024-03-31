@@ -154,7 +154,7 @@ def testing():
     user_id = request.json['callback_query']['from']['id']
     user_answer = request.json['callback_query']['data']
 
-    user_answer_word_id, user_answer_word_translation = user_answer.split(maxsplit=2)
+    user_answer_word_id, user_answer_word_translation = user_answer.split(',')
 
     bot.deleteMessage(chat_id, message_id)
 
