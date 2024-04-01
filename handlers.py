@@ -32,7 +32,7 @@ async def reminder():
     for user in users:
         user_id = user[0]
         chat_id = user[0]
-        text = "🔔 Может, пора пройти тест снова?"
+        text = "Может, пора пройти тест снова?"
         reply_markup = reminder_inline_keyboard_markup
         bot.sendMessage(chat_id, text, reply_markup)
 
@@ -48,7 +48,9 @@ def start():
     if not db.get_user_by_id(user_id):
         db.add_user(user_id)
 
-    text = "Привет! 👋 Я чат-бот для изучения английских слов."
+    text = "Приветствую! Я - твой личный помощник в изучении английского языка. Готов погрузиться в мир новых слов и захватывающих испытаний? 
+            Давай вместе расширим твой словарный запас и сделаем изучение английского еще увлекательнее! Я готов подстроиться под твои предпочтения и настройки, 
+            чтобы обеспечить максимально эффективное обучение 📚"
     reply_markup = start_reply_keyboard_markup
     bot.sendMessage(chat_id, text, reply_markup)
 
@@ -68,20 +70,18 @@ def startTest():
         chat_id = request.json['message']['chat']['id']
         user_id = request.json['message']['from']['id']
 
-    text = "🔄 Подбор вопросов для теста..."
+    text = "Загрузка вопросов для теста"
     bot.sendMessage(chat_id, text)
 
     questions_number = genQuestions(user_id)
 
     if questions_number == 0:
-        text = ("❌ Не удалось подобрать вопросы.\n"
-                "Попробуйте выбрать другую тему или подождать.")
+        text = "Не удалось загрузить вопросы. Выберите другую тему или подождите."
         bot.sendMessage(chat_id, text)
 
         return
 
-    text = (f"<b>Всего вопросов в тесте:</b> {questions_number}\n\n"
-            f"Удачи!")
+    text = (f"<b>Всего вопросов:</b> {questions_number}\n")
     reply_markup = startTest_reply_keyboard_markup
     bot.sendMessage(chat_id, text, reply_markup, parse_mode='HTML')
 
@@ -167,7 +167,7 @@ def testing():
 
     if user_answer_word_translation == word_translation:
         text = (f"Ваш ответ: <b>{user_answer_word_translation}</b>\n"
-                f"✅ Правильно")
+                f"Правильно")
         bot.sendMessage(chat_id, text, parse_mode='HTML')
 
         word_correct_answers_number = db.get_correct_answers_number_from_learning(user_id, word_id)
@@ -179,7 +179,7 @@ def testing():
         db.set_is_right_in_test(user_id, word_id, True)
     else:
         text = (f"Ваш ответ: <b>{user_answer_word_translation}</b>\n"
-                f"❌ Неправильно\n\n"
+                f"Неправильно\n\n"
                 f"Правильный ответ:\n"
                 f"<tg-spoiler><b>{word_translation}</b></tg-spoiler>")
         bot.sendMessage(chat_id=chat_id, text=text, parse_mode='HTML')
@@ -283,7 +283,7 @@ def backToMain():
     chat_id = request.json['message']['chat']['id']
     user_id = request.json['message']['from']['id']
 
-    text = "🏠 Главная. Что вы хотите сделать?"
+    text = "Что вы хотите сделать?"
     reply_markup = start_reply_keyboard_markup
     bot.sendMessage(chat_id, text, reply_markup)
 
