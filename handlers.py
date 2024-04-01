@@ -440,8 +440,8 @@ command_handlers = {
 }
 
 callback_handlers = {
-    'Пройти тест': startTest,
-    'Отложить напоминание на 30 мин.': deferReminder
+    'Пройти тест снова': startTest,
+    'Отложить на 30 мин.': deferReminder
 }
 
 handlers = {
