@@ -32,7 +32,7 @@ async def reminder():
     for user in users:
         user_id = user[0]
         chat_id = user[0]
-        text = "🔔 Пора пройти тест!"
+        text = "🔔 Может, пора пройти тест снова?"
         reply_markup = reminder_inline_keyboard_markup
         bot.sendMessage(chat_id, text, reply_markup)
 
